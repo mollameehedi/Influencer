@@ -1,0 +1,12 @@
+/* Common Items Style */
+%transition{
+	transition: all linear .3s;
+}
+
+%white-image{
+	filter: brightness(0%) invert(85%);
+}
+
+%common-bg{
+	background-color: lighten($color-secondary, $amount: 7);
+}
