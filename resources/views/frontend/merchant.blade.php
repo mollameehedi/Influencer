@@ -64,7 +64,7 @@
             @endif
             </div>
               <div class="col-12 mb-4 text-center">
-                <h1 class="merchant-form__title mb-4">Merchant Sign Up</h1>
+                <h1 class="merchant-form__title mb-4">Merchant Sign In</h1>
                 <p class="merchant-form__text">Fill in the details below and one of our members will be in touch with you shortly.</p>
               </div>
 

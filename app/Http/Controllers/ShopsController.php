@@ -9,6 +9,11 @@ use Image;
 
 class ShopsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('userrole');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -116,6 +121,5 @@ class ShopsController extends Controller
         }
         Shops_detail::find($shop->id)->delete();
         return back()->with('delete_shop', 'Shop deleted successfully!!');
-        
     }
 }

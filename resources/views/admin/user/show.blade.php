@@ -22,6 +22,9 @@
                     @if (session('delete_status'))
                     <div class="alert alert-danger">{{ session('delete_status') }}</div>
                     @endif
+                    @if (session('varified_status'))
+                    <div class="alert alert-success">{{ session('varified_status') }}</div>
+                    @endif
                     <table class="table table-bordered">
                         <thead class="thead-bordered">
                             <tr>

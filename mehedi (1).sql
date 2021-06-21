@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 15, 2021 at 04:33 PM
+-- Generation Time: Jun 21, 2021 at 04:42 PM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 7.3.28
 
@@ -120,7 +120,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (11, '2021_06_05_021020_create_offers_table', 7),
 (13, '2021_06_06_001116_create_shops_details_table', 8),
 (15, '2021_06_04_002516_create_banners_table', 9),
-(19, '2014_10_12_000000_create_users_table', 10);
+(19, '2014_10_12_000000_create_users_table', 10),
+(20, '2021_06_17_135647_create_orders_table', 11);
 
 -- --------------------------------------------------------
 
@@ -145,6 +146,37 @@ INSERT INTO `offers` (`id`, `heading`, `detail`, `bg`, `created_at`, `updated_at
 (2, 'Experiences', 'An easy way to experiences', '2.jpg', '2021-06-04 20:32:19', '2021-06-04 20:38:20'),
 (3, 'Dinner Out', 'An easy way to Dinner Out', '3.jpg', '2021-06-08 06:20:19', '2021-06-08 06:20:19'),
 (4, 'Delivery', 'An easy way to Delivery', '4.jpg', '2021-06-08 06:21:15', '2021-06-08 06:21:15');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `orders`
+--
+
+CREATE TABLE `orders` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `offer_id` int(11) NOT NULL,
+  `offer_activity` int(11) NOT NULL DEFAULT 1,
+  `offer_complete` time DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`id`, `user_id`, `offer_id`, `offer_activity`, `offer_complete`, `created_at`, `updated_at`) VALUES
+(2, 1, 8, 3, NULL, '2021-06-17 10:01:10', '2021-06-17 15:47:53'),
+(3, 1, 8, 3, NULL, '2021-06-17 10:25:23', '2021-06-17 10:25:39'),
+(4, 1, 5, 2, NULL, '2021-06-17 15:21:54', '2021-06-17 15:38:04'),
+(6, 1, 8, 3, NULL, '2021-06-17 15:28:58', '2021-06-17 16:31:43'),
+(7, 1, 8, 1, NULL, '2021-06-17 15:49:05', NULL),
+(8, 3, 8, 3, NULL, '2021-06-17 17:09:50', '2021-06-17 17:56:29'),
+(9, 3, 8, 3, NULL, '2021-06-17 17:17:45', '2021-06-17 17:18:28'),
+(10, 3, 8, 3, NULL, '2021-06-17 17:17:51', '2021-06-17 17:56:00'),
+(11, 3, 5, 1, NULL, '2021-06-17 17:59:36', NULL);
 
 -- --------------------------------------------------------
 
@@ -268,9 +300,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `birth`, `gender`, `state`, `email`, `whatsapp_number`, `instagram`, `nationality`, `email_verified_at`, `password`, `profile_photo`, `rules`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'admin', '2021-05-31', 'Male', 'Dubai', 'admin@gmail.com', '456456132123', 'asdffd', 'BH', '2021-06-13 10:19:36', '$2y$10$9O6r9UYVuRpMy4rcrNNETOJWUKr7SIwMn/bi2wsrt54VpzVM7KDRS', '1.jpg', '2', NULL, '2021-06-13 10:19:06', '2021-06-13 10:19:36'),
-(2, 'mehedi', '2021-06-08', 'Female', 'Dubai', 'mahadi@gmail.com', '456456132123', 'asdffd', 'AZ', '2021-06-13 11:08:50', '$2y$10$s22iO2KRLJlm8kyzOEYAEOnHYu6p56qtRIOyIAaoNGtLCpt7cVm0K', '2.jpg', '2', NULL, '2021-06-13 11:08:24', '2021-06-13 11:08:50'),
-(3, 'user', '2021-06-01', 'Female', 'Sharjah', 'user@gmail.com', '456456132123', 'asdffd', 'BB', NULL, '$2y$10$5pLh0Wg2kZLAV5DZ5DkXv.3wGziI8Xp.7gBNQBw0zsoh4Tk6OAHry', '3.jpg', '2', NULL, '2021-06-15 05:55:01', '2021-06-15 05:55:02');
+(1, 'admin', '2021-05-31', 'Male', 'Dubai', 'admin@gmail.com', '456456132123', 'asdffd', 'BH', '2021-06-13 10:19:36', '$2y$10$9O6r9UYVuRpMy4rcrNNETOJWUKr7SIwMn/bi2wsrt54VpzVM7KDRS', '1.jpg', '1', NULL, '2021-06-13 10:19:06', '2021-06-13 10:19:36'),
+(2, 'mehedi', '2021-06-08', 'Female', 'Dubai', 'mahadi@gmail.com', '456456132123', 'asdffd', 'AZ', '2021-06-13 11:08:50', '$2y$10$s22iO2KRLJlm8kyzOEYAEOnHYu6p56qtRIOyIAaoNGtLCpt7cVm0K', '2.jpg', '1', NULL, '2021-06-13 11:08:24', '2021-06-13 11:08:50'),
+(3, 'user', '2021-06-01', 'Female', 'Sharjah', 'user@gmail.com', '456456132123', 'asdffd', 'BB', '2021-06-17 17:11:26', '$2y$10$5pLh0Wg2kZLAV5DZ5DkXv.3wGziI8Xp.7gBNQBw0zsoh4Tk6OAHry', '3.jpg', '2', NULL, '2021-06-15 05:55:01', '2021-06-17 17:11:26'),
+(4, 'pervesh', '2021-06-09', 'Male', 'Dubai', 'pervesh@gmail.com', '456456132123', 'asdffd', 'BH', '2021-06-17 17:33:12', '$2y$10$tvo1eqljfCm3XBZ6HJRDOO.X.qbja4QseDeFbT.UhiNtwlJYn9DdS', '4.png', '2', NULL, '2021-06-17 17:28:31', '2021-06-17 17:33:12');
 
 --
 -- Indexes for dumped tables
@@ -310,6 +343,12 @@ ALTER TABLE `migrations`
 -- Indexes for table `offers`
 --
 ALTER TABLE `offers`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `orders`
+--
+ALTER TABLE `orders`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -375,13 +414,19 @@ ALTER TABLE `logos`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `offers`
 --
 ALTER TABLE `offers`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `partners`
@@ -405,7 +450,7 @@ ALTER TABLE `socials`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

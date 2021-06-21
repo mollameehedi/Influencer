@@ -8,6 +8,11 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('userrole');
+    }
     public function delete($id)
     {
         if (User::find($id)->profile_photo != 'default.jpg') {
@@ -24,7 +29,7 @@ class UserController extends Controller
         User::find($id)->update([
             'email_verified_at' => Carbon::now(),
         ]);
-        echo 'done';
+        return back()->with('varified_status', 'User verified  successfully!!!');
     }
     public function show($id)
     {

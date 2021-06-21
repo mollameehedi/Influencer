@@ -31,11 +31,11 @@
 
 
 				<div class="col-lg-4 col-md-6 col-sm-9 mx-auto mb-5 wow bounceInUp" data-wow-delay="0.1s">
-					<a href="{{ route('offerdetail') }}" class="offers__block d-flex align-items-center justify-content-center position-relative">
+					<a href="{{ route('offerdetail',$shop->id) }}" class="offers__block d-flex align-items-center justify-content-center position-relative">
 						<div class="offers__block__image position-absolute w-100 h-100 overflow-hidden">
 							<img src="{{ asset('frontend_asset') }}/assets/images/experience-items-1.jpg" alt="experience-items" class="w-100 h-100">
 						</div>
-						<h3 class="offers__block__title text-center mb-0">Sold Out for Today</h3>
+						<h3 class="offers__block__title text-center mb-0">{{ $shop->name }}</h3>
 						<p class="offers__block__shop mb-0 position-absolute">Outfit Exercise Gym</p>
 					</a>
 				</div>

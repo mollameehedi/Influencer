@@ -36,10 +36,21 @@
               <a class="nav-link text-uppercase position-relative" href="#benefits">BENEFITS</a>
             </li>
             <li class="nav-item wow bounceInDown" data-wow-delay="0.8s">
-              <a class="nav-link text-uppercase position-relative" href="#services">Category</a>
+                @guest
+
+                <a class="nav-link text-uppercase position-relative" href="#services">Category</a>
+                @endguest
+                @auth
+
+                <a class="nav-link text-uppercase position-relative" href="{{ route('category') }}">Category</a>
+                @endauth
             </li>
             <li class="nav-item wow bounceInDown" data-wow-delay="1s">
-              <a class="nav-link text-uppercase position-relative" href="{{ route('merchant') }}">MERCHANT</a>
+                @guest
+
+                <a class="nav-link text-uppercase position-relative" href="{{ route('merchant') }}">MERCHANT</a>
+                @endguest
+
             </li>
           </ul>
         </div>

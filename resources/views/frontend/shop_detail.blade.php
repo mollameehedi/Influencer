@@ -26,18 +26,27 @@
 									<a href="{{ route('deliveryoffers') }}" class="back-btn d-inline-block rounded-sm"><i class="fas fa-chevron-left"></i></a>
 									<button class="btn-block text-left ml-3 border-0 bg-transparent collapse-button" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">Offer</button>
 								</h2>
+
 							</div>
 							<div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
 								<div class="card-body text-center">
 									<figure class="individual-offer__image">
 										<img src="{{ asset('frontend_asset') }}/assets/images/delivery-items-1.jpg" alt="delivery-items" class="w-100">
 									</figure>
-									<h2 class="individual-offer__title mb-3">An Exciting Experience with
-										<span class="individual-offer__shop d-block my-2">Hummus Brothers (4pm-7pm)</span>
+                                    @if (session('request_status'))
+                                    <div class="alert alert-success">
+                                        {{ session('request_status') }}
+                                    </div>
+                                @endif
+									<h2 class="individual-offer__title mb-3">{{ $offer_details->name }}
+										<span class="individual-offer__shop d-block my-2">Hummus Brothers ({{ $offer_details->time_sidule }})</span>
 									</h2>
-									<p class="individual-offer__text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium amet minima necessitatibus illum minus deleniti saepe, officiis enim recusandae voluptatum cupiditate explicabo praesentium nisi ex asperiores iusto alias? Modi magnam illo aut tempore ipsa, dolores fugit cum commodi. Aliquam doloremque dicta libero, ullam sunt tempore aut deleniti dolorem qui exercitationem!</p>
-									<p class="individual-offer__text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium amet minima necessitatibus illum minus deleniti saepe, officiis enim recusandae voluptatum cupiditate explicabo praesentium nisi ex asperiores iusto alias? Modi magnam illo aut tempore ipsa, dolores fugit cum commodi. Aliquam doloremque dicta libero, ullam sunt tempore aut deleniti dolorem qui exercitationem!</p>
-									<a href="#!" class="primary-btn primary-btn--reversed position-relative text-uppercase d-inline-block w-100" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    <div>
+                                        {{ $offer_details->details }}
+                                    </div>
+									{{-- <p class="individual-offer__text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium amet minima necessitatibus illum minus deleniti saepe, officiis enim recusandae voluptatum cupiditate explicabo praesentium nisi ex asperiores iusto alias? Modi magnam illo aut tempore ipsa, dolores fugit cum commodi. Aliquam doloremque dicta libero, ullam sunt tempore aut deleniti dolorem qui exercitationem!</p>
+									<p class="individual-offer__text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium amet minima necessitatibus illum minus deleniti saepe, officiis enim recusandae voluptatum cupiditate explicabo praesentium nisi ex asperiores iusto alias? Modi magnam illo aut tempore ipsa, dolores fugit cum commodi. Aliquam doloremque dicta libero, ullam sunt tempore aut deleniti dolorem qui exercitationem!</p> --}}
+									<a href="" class="primary-btn primary-btn--reversed position-relative text-uppercase d-inline-block w-100" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
 										<span class="position-relative">Yes. I'm in</span>
 									</a>
 									<a href="{{ route('deliveryoffers') }}" class="primary-btn position-relative text-uppercase d-inline-block w-100 my-3 my-md-0">
@@ -92,7 +101,7 @@
 							<div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
 								<div class="card-body">
 									<div class="text-center">
-										<a href="{{ route('deliveryoffers') }}" class="primary-btn primary-btn--reversed position-relative text-uppercase d-inline-block w-100">
+										<a href="{{ route('offer.request',$offer_details->id) }}" class="primary-btn primary-btn--reversed position-relative text-uppercase d-inline-block w-100">
 											<span class="position-relative">Yes. Confirm</span>
 										</a>
 										<a href="#!" class="primary-btn position-relative text-uppercase d-inline-block w-100 my-3 my-md-0">

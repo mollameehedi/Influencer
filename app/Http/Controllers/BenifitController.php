@@ -9,6 +9,11 @@ use Image;
 
 class BenifitController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('userrole');
+    }
     /**
      * Display a listing of the resource.
      *

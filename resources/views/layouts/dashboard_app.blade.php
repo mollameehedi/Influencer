@@ -24,6 +24,8 @@
 
       <label class="sidebar-label">Navigation</label>
       <div class="sl-sideleft-menu">
+          @if (Auth::user()->rules == 1)
+
         <a href="{{ route('home') }}" class="sl-menu-link @yield('dashboard')">
           <div class="sl-menu-item">
             <i class="menu-item-icon icon ion-ios-home-outline tx-22"></i>
@@ -34,6 +36,12 @@
           <div class="sl-menu-item">
             <i class="menu-item-icon icon ion-ios-home-outline tx-22"></i>
             <span class="menu-item-label">Logo</span>
+          </div><!-- menu-item -->
+        </a><!-- sl-menu-link -->
+        <a href="{{ route('home.order.index') }}" class="sl-menu-link @yield('orders')">
+          <div class="sl-menu-item">
+            <i class="menu-item-icon icon ion-ios-home-outline tx-22"></i>
+            <span class="menu-item-label">Orders <span class="badge badge-primary">{{ new_order() }}</span></span>
           </div><!-- menu-item -->
         </a><!-- sl-menu-link -->
         <a href="{{ route('banner.index') }}" class="sl-menu-link @yield('banner')">
@@ -72,6 +80,34 @@
             <span class="menu-item-label">Shop</span>
           </div><!-- menu-item -->
         </a><!-- sl-menu-link -->
+        @endif
+        @if (Auth::user()->rules == 2)
+        <a href="{{ route('dashboard.influencer') }}" class="sl-menu-link @yield('dashboard')">
+            <div class="sl-menu-item">
+              <i class="menu-item-icon icon ion-ios-home-outline tx-22"></i>
+              <span class="menu-item-label">Dashboard</span>
+            </div><!-- menu-item -->
+          </a><!-- sl-menu-link -->
+
+
+
+        <a href="{{ route('index') }}" class="sl-menu-link">
+            <div class="sl-menu-item">
+              <i class="menu-item-icon icon ion-ios-home-outline tx-22"></i>
+              <span class="menu-item-label">Home</span>
+            </div><!-- menu-item -->
+          </a><!-- sl-menu-link -->
+
+        <a href="{{ route('category') }}" class="sl-menu-link">
+            <div class="sl-menu-item">
+              <i class="menu-item-icon icon ion-ios-home-outline tx-22"></i>
+              <span class="menu-item-label">Categroy</span>
+            </div><!-- menu-item -->
+          </a><!-- sl-menu-link -->
+        @endif
+
+
+
       </div><!-- sl-sideleft-menu -->
 
       <br>
@@ -107,7 +143,7 @@
     </div><!-- sl-header -->
     <!-- ########## END: HEAD PANEL ########## -->
     @yield('dashboard_content')
-    
+
 
     <script src="{{ asset('dashboard_asset') }}/lib/jquery/jquery.js"></script>
     <script src="{{ asset('dashboard_asset') }}/lib/popper.js/popper.js"></script>
@@ -116,7 +152,7 @@
 
     <script src="{{ asset('dashboard_asset') }}/js/starlight.js"></script>
     <script src="https://cdn.ckeditor.com/ckeditor5/27.1.0/classic/ckeditor.js"></script>
-    
+
 @yield('footer_scripts')
 
   </body>

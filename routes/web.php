@@ -8,11 +8,7 @@ Route::get('merchant', 'FrontendController@merchant')->name('merchant');
 Route::post('verification', 'FrontendController@verification')->name('verification');
 // Route::post('verified/login', 'FrontendController@verifiedlogin')->name('verified.singin');
 Route::post('varification/login', 'FrontendController@verificationlogin')->name('verified.login');
-Route::get('category', 'FrontendController@category')->name('category');
-Route::get('delivery-offers/', 'FrontendController@deliveryoffers')->name('deliveryoffers');
-Route::get('experience-offers', 'FrontendController@experienceoffers')->name('experienceoffers');
-Route::get('dinner-offers', 'FrontendController@dinneroffers')->name('dinneroffers');
-Route::get('offer-details', 'FrontendController@offerdetail')->name('offerdetail');
+
 Route::post('become/an/influencer/store', 'FrontendController@becomeaninfluencerstore')->name('become.an.influencer.store');
 
 Auth::routes(['verify' => true]);
@@ -64,3 +60,19 @@ Route::resource('home/shops', 'ShopsController');
 Route::get('home/user/delete/{id}', 'UserController@delete')->name('user.delete');
 Route::get('home/user/verified/{id}', 'UserController@verified')->name('user.verified');
 Route::get('home/user/show/{id}', 'UserController@show')->name('user.show');
+
+
+//Influencer controller route start
+Route::get('dashboard/incluencer', 'InfluencerController@dashboardinfluencer')->name('dashboard.influencer');
+Route::get('category', 'InfluencerController@category')->name('category');
+Route::get('delivery-offers', 'InfluencerController@deliveryoffers')->name('deliveryoffers');
+Route::get('experience-offers', 'InfluencerController@experienceoffers')->name('experienceoffers');
+Route::get('dinner-offers', 'InfluencerController@dinneroffers')->name('dinneroffers');
+Route::get('offer-details/{id}', 'InfluencerController@offerdetail')->name('offerdetail');
+Route::get('offer/request/{id}', 'InfluencerController@offerrequest')->name('offer.request');
+
+// order controller route start
+Route::get('home/orders', 'OrderController@homeorders')->name('home.order.index');
+Route::get('home/orders/accept/{id}', 'OrderController@homeordersaccept')->name('home.order.accept');
+Route::get('home/order/complete{id}', 'OrderController@homeordercomplete')->name('home.order.complete');
+Route::get('home/orders/delete/{id}', 'OrderController@homeordersdelete')->name('home.order.delete');

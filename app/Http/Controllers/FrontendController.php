@@ -37,9 +37,8 @@ class FrontendController extends Controller
     {
         $user_info = User::where('name', $request->name)->first();
 
-
         if ($user_info->email_verified_at === null) {
-            return back()->withErrors('Your account no verified!!');
+            return back()->withErrors("Your account isn't verified!!");
         } else {
             if ($user_info) {
                 if ($user_info->whatsapp_number === $request->number) {
@@ -49,28 +48,27 @@ class FrontendController extends Controller
                                 'user_id' => $user_info->id
                             ]);
                         } else {
-                            return back()->withErrors('Instagram username dutch Not match!!');
+                            return back()->withErrors("Instagram username doesn't match!!");
                         }
                     } else {
-                        return back()->withErrors('Email dutch Not match!!');
+                        return back()->withErrors("Email doesn't match!!");
                     }
                 } else {
-                    return back()->withErrors("Number dutch Not match!!");
+                    return back()->withErrors("Number doesn't match!!");
                 }
             } else {
-                return back()->withErrors("Name aren't there");
+                return back()->withErrors("Name doesn't match our data");
             }
         }
     }
     public function verificationlogin(Request $request)
     {
-        $user_info = User::find($request->user_id)->first();
-        echo $user_email = $user_info->email;
-        echo $user_password = $user_info->password;
-
+        $user_info = User::find($request->user_id);
+        $user_email = $user_info->email;
+        $user_password = $user_info->password;
         if ($user_info->whatsapp_number == $request->number) {
             Auth::attempt(['email' => $user_email, 'password' => 'Infouencer123']);
-            redirect('home');
+            return redirect('dashboard/incluencer');
         } else {
             return back()->withErrors('Instagram username dutch Not match!!');
         }
@@ -88,34 +86,7 @@ class FrontendController extends Controller
         // } else {
         // }
     }
-    public function category()
-    {
-        return view('frontend.category');
-    }
-    public function deliveryoffers()
-    {
-        return view('frontend.experienceoffers', [
-            'shops' => Shops_detail::where('type', 1)->latest()->get()
-        ]);
-    }
-    public function experienceoffers()
-    {
-        return view('frontend.experienceoffers', [
-            'shops' => Shops_detail::where('type', 2)->latest()->get()
-        ]);
-        // return view('frontend.experienceoffers');
-    }
-    public function dinneroffers()
-    {
-        return view('frontend.experienceoffers', [
-            'shops' => Shops_detail::where('type', 3)->latest()->get()
-        ]);
-        // return view('frontend.dinneroffers');
-    }
-    public function offerdetail()
-    {
-        return view('frontend.shop_detail');
-    }
+
 
 
 
@@ -138,15 +109,6 @@ class FrontendController extends Controller
             User::find($id)->update([
                 'profile_photo' => $new_file_name,
             ]);
-
-
-            // $uploaded_photo = $request->file('profile_photo');
-            // $new_file_name = $id . "." . $uploaded_photo->getClientOriginalExtension();
-            // $new_file_location = 'public/uploads/logo/' . $new_file_name;
-            // Image::make($uploaded_photo)->save(base_path($new_file_location));
-            // Logo::find($id)->update([
-            //     'profile_photo' => $new_file_name,
-            // ]);
         }
         return back()->with('uer_request', 'Request sent Successfully!!!');
     }
